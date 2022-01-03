@@ -135,9 +135,11 @@ class Scraper:
 
 	name = None
 
-	def __init__(self, retries = 3):
+	def __init__(self, retries = 3, proxies = None):
 		self._retries = retries
 		self._session = requests.Session()
+		if proxies:
+			self._session.proxies = proxies
 
 	@abc.abstractmethod
 	def get_items(self):
